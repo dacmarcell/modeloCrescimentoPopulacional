@@ -1,0 +1,29 @@
+[
+  {
+    "id": "urban-city",
+    "name": "Cidade Urbana (Exponencial)",
+    "modelType": "exponential",
+    "initialPopulation": 2000,
+    "growthRate": 0.08,
+    "carryingCapacity": 20000,
+    "timeSpan": 80
+  },
+  {
+    "id": "endangered-species",
+    "name": "Espécie Ameaçada (Logístico)",
+    "modelType": "logistic",
+    "initialPopulation": 300,
+    "growthRate": 0.12,
+    "carryingCapacity": 5000,
+    "timeSpan": 120
+  },
+  {
+    "id": "small-town",
+    "name": "Pequena Cidade (Exponencial)",
+    "modelType": "exponential",
+    "initialPopulation": 800,
+    "growthRate": 0.05,
+    "carryingCapacity": 10000,
+    "timeSpan": 100
+  }
+]

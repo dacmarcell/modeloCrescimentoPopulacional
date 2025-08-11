@@ -1,11 +1,45 @@
 :root {
+  /* Typography */
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
+  /* Inform browser we support both */
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+
+  /* Theme tokens: Light as default */
+  --bg: #ffffff;
+  --bg-gradient: linear-gradient(to bottom right, #f8fafc, #eef2ff);
+  --text: #111827;
+  --muted-text: #6b7280;
+
+  --surface: #ffffff;
+  --surface-2: #f5f7ff;
+  --border: #e0e7ff;
+
+  --accent: #4338ca; /* indigo-700 */
+  --accent-contrast: #ffffff;
+  --accent-soft: #e0e7ff;
+
+  --header-bg: #4338ca;
+  --header-text: #ffffff;
+  --header-subtle: #e0e7ff;
+
+  --footer-bg: #312e81;
+  --footer-text: #ffffff;
+
+  --select-bg: #eef2ff;
+  --select-border: #d1d5db;
+
+  --formula-bg: #ffffff;
+
+  --chart-grid: #e0e7ff;
+  --chart-axis: #4338ca;
+  --tooltip-bg: rgba(255, 255, 255, 0.9);
+  --tooltip-border: #4338ca;
+
+  --success: #10b981;
+  --info: #0ea5e9;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,13 +47,41 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b1220;
+    --bg-gradient: linear-gradient(to bottom right, #0b1220, #111827);
+    --text: #e5e7eb;
+    --muted-text: #9ca3af;
+
+    --surface: #0f172a;
+    --surface-2: #0f172a;
+    --border: #334155;
+
+    --accent: #a5b4fc; /* indigo-300 */
+    --accent-contrast: #0b1220;
+    --accent-soft: #1f2937;
+
+    --header-bg: #1e1b4b;
+    --header-text: #e5e7eb;
+    --header-subtle: #c7d2fe;
+
+    --footer-bg: #0b0a2b;
+    --footer-text: #e5e7eb;
+
+    --select-bg: #111827;
+    --select-border: #334155;
+
+    --formula-bg: #0b1220;
+
+    --chart-grid: #334155;
+    --chart-axis: #a5b4fc;
+    --tooltip-bg: rgba(17, 24, 39, 0.95);
+    --tooltip-border: #a5b4fc;
+
+    --success: #059669;
+    --info: #0284c7;
+  }
 }
 
 body {
@@ -27,6 +89,17 @@ body {
   display: block;
   min-width: 320px;
   min-height: 100vh;
+  color: var(--text);
+  background: var(--bg);
+}
+
+a {
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: inherit;
+}
+a:hover {
+  color: color-mix(in oklab, var(--accent), white 15%);
 }
 
 h1 {
@@ -41,27 +114,15 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--surface);
+  color: var(--text);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s, background-color 0.2s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: var(--accent);
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
