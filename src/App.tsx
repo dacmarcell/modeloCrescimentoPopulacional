@@ -22,15 +22,18 @@ const createStyles = (windowWidth: number) => {
       display: "flex",
       flexDirection: "column" as const,
       minHeight: "100vh",
-      minWidth: "100vw",
+      minWidth: "100%",
       background: "linear-gradient(to bottom right, #f0f5ff, #e8eaff)",
       fontFamily: "system-ui, -apple-system, sans-serif",
     },
     header: {
       background: "#4338ca",
       color: "white",
-      padding: isMobile ? "1rem" : "1.5rem",
+      padding: isMobile ? "0.75rem 1rem" : "1.25rem 1.5rem",
       boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+      position: "sticky" as const,
+      top: 0,
+      zIndex: 1000,
     },
     headerContent: {
       maxWidth: "1200px",
@@ -38,20 +41,21 @@ const createStyles = (windowWidth: number) => {
       textAlign: "center" as const,
     },
     mainTitle: {
-      fontSize: isMobile ? "1.5rem" : "1.875rem",
+      fontSize: isMobile ? "1.25rem" : "1.875rem",
       fontWeight: "bold",
       margin: 0,
     },
     subtitle: {
       marginTop: "0.5rem",
       color: "#e0e7ff",
-      fontSize: isMobile ? "0.875rem" : "1rem",
+      fontSize: isMobile ? "0.8rem" : "1rem",
     },
     main: {
       flexGrow: 1,
-      padding: isMobile ? "1rem" : isTablet ? "1.5rem" : "2rem",
+      padding: isMobile ? "0.75rem" : isTablet ? "1.25rem" : "2rem",
       maxWidth: "1200px",
       width: "100%",
+      margin: "0 auto",
       boxSizing: "border-box" as const,
     },
     grid: {
@@ -70,8 +74,7 @@ const createStyles = (windowWidth: number) => {
       overflow: "hidden",
       border: "1px solid #e0e7ff",
       marginBottom: isMobile ? "1rem" : 0,
-      marginLeft: 30,
-      width: "35em",
+      width: "100%",
     },
     chartCard: {
       background: "white",
@@ -88,20 +91,20 @@ const createStyles = (windowWidth: number) => {
       borderBottom: "1px solid #e0e7ff",
     },
     cardTitle: {
-      fontSize: isMobile ? "1.125rem" : "1.25rem",
+      fontSize: isMobile ? "1rem" : "1.25rem",
       fontWeight: 600,
       color: "#3730a3",
       margin: 0,
     },
     cardBody: {
-      padding: isMobile ? "1rem" : "1.5rem",
+      padding: isMobile ? "0.75rem" : "1.5rem",
     },
     formGroup: {
-      marginBottom: isMobile ? "1rem" : "1.5rem",
+      marginBottom: isMobile ? "0.75rem" : "1.5rem",
     },
     label: {
       display: "block",
-      fontSize: "0.875rem",
+      fontSize: isMobile ? "0.8125rem" : "0.875rem",
       fontWeight: 500,
       color: "#4b5563",
       marginBottom: "0.5rem",
@@ -128,7 +131,7 @@ const createStyles = (windowWidth: number) => {
     },
     range: {
       width: "100%",
-      height: "0.5rem",
+      height: isMobile ? "0.6rem" : "0.5rem",
       borderRadius: "0.25rem",
       accentColor: "#4338ca",
     },
@@ -203,7 +206,7 @@ const createStyles = (windowWidth: number) => {
       marginTop: "2rem",
     },
     footerText: {
-      fontSize: "0.875rem",
+      fontSize: isMobile ? "0.75rem" : "0.875rem",
       margin: 0,
     },
   };
@@ -477,7 +480,7 @@ export default function PopulationGrowthModel() {
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart
                   data={chartData}
-                  margin={{ top: 20, right: 20, bottom: 20 }}
+                  margin={{ top: windowWidth < 640 ? 12 : 20, right: windowWidth < 640 ? 12 : 20, bottom: windowWidth < 640 ? 8 : 20 }}
                 >
                   <CartesianGrid strokeDasharray="3 3" stroke="#E0E7FF" />
                   <XAxis
@@ -526,6 +529,7 @@ export default function PopulationGrowthModel() {
                   <Legend
                     wrapperStyle={{
                       fontSize: windowWidth < 640 ? "0.75rem" : "0.875rem",
+                      display: windowWidth < 380 ? "none" : "block",
                     }}
                   />
                   <Line
